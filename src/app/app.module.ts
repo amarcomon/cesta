@@ -15,8 +15,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  {path:'mis-listas', component: ListasGuardadasComponent},
-  {path:'lista-compra', component: ListaCompraComponent}
+  {path:'lista-compra', component: ListaCompraComponent},
+  {path:'mis-listas', component: ListasGuardadasComponent}
 ]
 
 @NgModule({
