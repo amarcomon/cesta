@@ -21,25 +21,37 @@ export class DataService {
     getLists() {
         return  this.http.get(this.url+'data.json').map(
             (response: Response) => { 
-                const data = response.json();
-                const obj = Object.values(data);
-                this.listasServer = obj;
-                return obj;
+                if(typeof(response) !== 'undefined' || response === "null"){
+                    const data = response.json();
+                    const obj = Object.values(data);
+                    this.listasServer = obj;
+                    return obj;
+                }
             }
         );
     }
 
     getListNames() {
         const nombres = [];
-        return  this.http.get(this.url+'data.json').map(
-            (response: Response) => { 
+        return this.http.get(this.url+'data.json').forEach((response: Response) => {
+            if(response.ok){
                 const data = Object.values(response.json());
-                data.forEach( function (element, index, array){
-                const fecha = element[index].nombre;
-                nombres.push(fecha);
-                return nombres; 
-            });
-            this.nombreListas = nombres;
-        });
+                const nombres = this.obtenerNombres(data);
+                this.nombreListas = nombres;
+            }
+        })
     }
+
+    private obtenerNombres( lista ) {
+        var nombres =  [];
+        for(var item of lista) {
+            for(let c of item) {
+                nombres.push(c.nombre)
+            }
+        }
+        var filternombres = nombres.filter(function(i,pos){
+            return nombres.indexOf(i) == pos;
+        })
+        return filternombres;
+    };
 }

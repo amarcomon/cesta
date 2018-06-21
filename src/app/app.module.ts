@@ -12,20 +12,23 @@ import { ListasGuardadasComponent } from './listas-guardadas/listas-guardadas.co
 import { HomeComponent } from './home/home.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ProductoComponent } from './producto/producto.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'lista-compra', component: ListaCompraComponent},
-  {path:'mis-listas', component: ListasGuardadasComponent}
+  {path:'mis-listas', component: ListasGuardadasComponent},
+  {path:'productos', component: ProductoComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
     ListaCompraComponent,
     ListasGuardadasComponent,
-    HomeComponent,
+    ProductoComponent,
     KeysPipe,
     FilterPipe
   ],

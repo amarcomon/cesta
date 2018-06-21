@@ -20,11 +20,13 @@ export class ListasGuardadasComponent implements OnInit {
     
     this.dataService.getLists().subscribe( (listas) => {
     this.listasGuardadas = this.dataService.listasServer;
-    console.log(this.listasGuardadas);
+    //console.log(this.listasGuardadas);
     
     });
 
-    this.dataService.getListNames().subscribe( (nombres) => {
+    //console.log(this.dataService.getListNames());
+    
+    this.dataService.getListNames().then( (nombres) => {
       this.nombreListas = this.dataService.nombreListas;
     });
   }

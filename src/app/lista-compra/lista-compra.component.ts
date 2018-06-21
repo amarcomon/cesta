@@ -39,7 +39,6 @@ export class ListaCompraComponent implements OnInit {
   guardarListaCompra() {
     this.dataService.saveList(this.listaProd).subscribe((results) => {
 
-      console.log(results);
     });
     
   }
