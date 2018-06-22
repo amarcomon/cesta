@@ -1,10 +1,12 @@
 <div class="container">
   <h4>Listas guardadas</h4>
   <input type="text" [(ngModel)]="filterList">
-  <div class="accordion" *ngFor="let n of nombreListas | filter:filterList" (click)="toggleList()">{{n}}
-    <ul [hidden]="toggle" *ngFor="let c of listasGuardadas">
-      <li *ngFor="let key of c | keys">
-        {{key.producto}}: {{key.cantidad}}</li>
-    </ul>
+  <div class="accordion" *ngFor="let n of getListNames() | filter:filterList" (click)="toggleList(n)">
+    {{n}}
+    <div *ngIf="isExpanded(n)">
+      <ul *ngFor="let c of getListElements(n)">      
+          {{c}}
+      </ul>
+    </div>
   </div>
 </div>

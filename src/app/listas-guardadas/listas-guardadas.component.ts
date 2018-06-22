@@ -3,6 +3,7 @@ import { Response } from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../data-service';
 import { Subscription } from 'rxjs';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-listas-guardadas',
@@ -13,24 +14,37 @@ export class ListasGuardadasComponent implements OnInit {
 
   listasGuardadas = [];
   nombreListas = [];
-  toggle = true;
+  expandedElements = [];
   constructor( private dataService: DataService) { }
 
   ngOnInit() {  
     
     this.dataService.getLists().subscribe( (listas) => {
     this.listasGuardadas = this.dataService.listasServer;
-    console.log(this.listasGuardadas);
-    
-    });
-
-    this.dataService.getListNames().then( (nombres) => {
-      this.nombreListas = this.dataService.nombreListas;
-      console.log(this.nombreListas);
     });
   }
 
-  toggleList() {
-    this.toggle = !this.toggle;
+  getListNames() {
+    return this.listasGuardadas.map(element => element[0].nombre);    
+  }
+
+  getListElements(n: string) {
+    return this.listasGuardadas.map( (element) => {
+       let filtered = element.filter( (f) => f.nombre == n);
+      })
+  }
+
+  isExpanded(n:String) {
+    return this.expandedElements.indexOf(n) != -1;
+  }
+
+  toggleList(n:String) {
+    let index = this.expandedElements.indexOf(n);
+    if (index == -1) {
+      this.expandedElements.push(n);
+    }
+    else {
+      this.expandedElements.splice(index, 1);
+    }
   }
 }

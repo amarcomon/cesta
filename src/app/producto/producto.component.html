@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" style="margin-left: 10px; margin-right: 10px">
     <button class="btn btn-success col-9" style="margin-right:5px;" (click)="newProduct()">Añadir producto</button>
-    <button class="btn btn-default col-2 plegar" *ngIf="btnadd ? '': 'hidden'" (click)="dropup()"><i class="glyphicon glyphicon-triangle-top"></i></button>
+    <button class="btn btn-default col-2 plegar" *ngIf="btnadd ? '': 'hidden'" (click)="dropup()"><i class="fa fa-caret-up"></i></button>
   </div>
 </div>
 <div class="container" *ngIf="ocultar? 'hidden' : ''">
@@ -36,5 +36,11 @@
 </div>
 <hr>
 <div class="container">
-  
+<h3>Lista de productos</h3>
+<hr>
+<input type="text" [(ngModel)]="filterProducts">
+<hr>
+  <div  *ngFor="let p of products | filter:filterProducts">
+
+  </div>
 </div>

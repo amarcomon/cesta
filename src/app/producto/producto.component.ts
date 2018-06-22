@@ -22,8 +22,9 @@ export class ProductoComponent implements OnInit {
   
   newProduct() {
     this.ocultar = true;
-    this.btnadd = !this.btnadd;
+    this.btnadd = false;
   }
+  
   dropup() {
     this.ocultar = false;
     this.btnadd = true;
