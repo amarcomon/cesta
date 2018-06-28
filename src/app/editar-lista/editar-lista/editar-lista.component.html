@@ -1,0 +1,14 @@
+<div class="container">
+  <form action="">
+    <div *ngFor="let list of listasFiltradas">
+        <div *ngFor="let item of list">
+         <input type="text" value="{{item.producto}}">
+         <input type="text" value="{{item.cantidad}}">
+        </div>
+    </div>
+    <button (click) ="guardarLista()">Guardar</button>
+  </form>
+</div>
+
+
+

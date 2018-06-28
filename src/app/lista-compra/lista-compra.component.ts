@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Lista } from '../modelo/Lista';
 import { DataService } from '../data-service';
+import { Producto } from '../modelo/Producto';
 
 @Component({
   selector: 'app-lista-compra',
@@ -13,12 +14,13 @@ export class ListaCompraComponent implements OnInit {
   producto:string = '';
   cantidad: number = null;
   item: Lista = null ;
-  listaProd = [];
+  listaProd: Array<Lista> = [];
+  productos: Array<Producto>;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-   
+    this.dataService.getProduct().subscribe((data) => this.productos = data)
   }
 
   onSubmit(f: NgForm) {

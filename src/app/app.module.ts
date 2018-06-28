@@ -13,12 +13,17 @@ import { HomeComponent } from './home/home.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ProductoComponent } from './producto/producto.component';
+import { EditarListaComponent } from './editar-lista/editar-lista/editar-lista.component';
+import { DataBindingComponent } from './data-binding/data-binding/data-binding.component';
+import { FirstLetter } from './pipes/first-letter.pipe';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'lista-compra', component: ListaCompraComponent},
   {path:'mis-listas', component: ListasGuardadasComponent},
-  {path:'productos', component: ProductoComponent}
+  {path: 'editar-lista/:nombre', component: EditarListaComponent},
+  {path:'productos', component: ProductoComponent},
+  {path:'data-binding', component: DataBindingComponent}
 ]
 
 @NgModule({
@@ -28,13 +33,16 @@ const routes: Routes = [
     HomeComponent,
     ListaCompraComponent,
     ListasGuardadasComponent,
+    EditarListaComponent,
     ProductoComponent,
     KeysPipe,
-    FilterPipe
+    FilterPipe,
+    FirstLetter,
+    DataBindingComponent
   ],
   imports: [
     BrowserModule, 
-    FormsModule, 
+    FormsModule,
     HttpModule,
     RouterModule.forRoot(
       routes,

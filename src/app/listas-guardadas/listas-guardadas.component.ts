@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from "@angular/http";
-import { Observable } from 'rxjs/Observable';
 import { DataService } from '../data-service';
-import { Subscription } from 'rxjs';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-listas-guardadas',
@@ -15,6 +11,7 @@ export class ListasGuardadasComponent implements OnInit {
   listasGuardadas = [];
   nombreListas = [];
   expandedElements = [];
+  listaObject;
   constructor( private dataService: DataService) { }
 
   ngOnInit() {  
@@ -25,13 +22,18 @@ export class ListasGuardadasComponent implements OnInit {
   }
 
   getListNames() {
-    return this.listasGuardadas.map(element => element[0].nombre);    
+    return this.listasGuardadas.map(element => element[0].nombre.toLowerCase().replace(/\s/g,'')).splice(0,4);    
   }
 
   getListElements(n: string) {
-    return this.listasGuardadas.map( (element) => {
-       let filtered = element.filter( (f) => f.nombre == n);
-      })
+    this.listasGuardadas.forEach( (element) => {
+       element.filter( (f) => {
+         if (n == f.nombre) {
+           this.listaObject = f;
+        }
+      });
+      return this.listaObject;
+    })
   }
 
   isExpanded(n:String) {

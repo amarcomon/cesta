@@ -3,10 +3,6 @@
   <input type="text" [(ngModel)]="filterList">
   <div class="accordion" *ngFor="let n of getListNames() | filter:filterList" (click)="toggleList(n)">
     {{n}}
-    <div *ngIf="isExpanded(n)">
-      <ul *ngFor="let c of getListElements(n)">      
-          {{c}}
-      </ul>
-    </div>
+    <a type="button" routerLink="/editar-lista/{{n}}">Editar</a>
   </div>
 </div>

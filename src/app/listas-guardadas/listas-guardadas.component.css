@@ -27,7 +27,7 @@ div.accordion.active:after {
     content: "\2796";
 }
 
-ul.panel {
+div.panel {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
@@ -35,7 +35,7 @@ ul.panel {
     transition: 0.6s ease-in-out;
     opacity: 0;
 }
-ul.panel.show {
+div.panel.show {
     opacity: 1;
     max-height: 500px;
 }

@@ -8,9 +8,9 @@
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="input-group mb-3 form-group">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Producto</span>
+        <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
       </div>
-      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="producto" required>
+      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="nombre" required>
     </div>
     <div class="input-group mb-3 form-group">
       <div class="input-group-prepend">
@@ -22,13 +22,17 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Categoria</span>
       </div>
-      <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="categoria">
+      <select class="form-control" ngModel name="categoria">
+        <option *ngFor="let categoria of categorias">
+          {{categoria}}
+        </option>
+      </select>  
     </div>
     <div class="input-group mb-3 form-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Envase</span>
       </div>
-      <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="envase">
+      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="envase" (change)="changeevent()">
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Añadir</button>
     <button class="btn btn-primary" type="reset">Limpiar</button>
@@ -40,7 +44,24 @@
 <hr>
 <input type="text" [(ngModel)]="filterProducts">
 <hr>
-  <div  *ngFor="let p of products | filter:filterProducts">
+  <div  *ngFor="let p of listaProductos | filter:filterProducts">
+    {{p.nombre}}--{{p.precio}}--{{p.categoria}}
+  </div>
+  <button class="btn btn-primary" (click)="guardarProducto()">Guardar</button>
 
+  <div class="container">
+    <input type="submit" value="añade item">
+
+    <input type="submit" value="{{texto}}">
+
+    <input type="text" [(ngModel)]="texto2">
+    <input type="submit" value="{{texto2}}">
+    <br><span>{{texto2}}</span>
+    <br><br>
+    <button (click)="clickevent()">Click</button>
+    <br><br>
+    <div (click)="clickevent()">Click</div>
+    <br><br>
+    <p (copy)="copyevent()">No copies esto</p>
   </div>
 </div>

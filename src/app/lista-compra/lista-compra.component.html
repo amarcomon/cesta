@@ -13,7 +13,11 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Producto</span>
       </div>
-      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="producto" required>
+      <!-- <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" ngModel name="producto" required> -->
+      <select class="form-control" ngModel name="producto">
+        <option value="" selected>---Selecciona una opcion---</option>
+        <option *ngFor="let p of productos" name="producto" required>{{p.nombre}}</option>
+      </select>
     </div>
     <div class="input-group mb-3 form-group">
       <div class="input-group-prepend">

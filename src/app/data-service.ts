@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
-import { Lista } from "./modelo/Lista";
-import { forEach } from "@angular/router/src/utils/collection";
 
 @Injectable()
 export class DataService {
@@ -10,12 +8,13 @@ export class DataService {
     url:string = 'https://cesta-afb5a.firebaseio.com/';
     listasServer = [];
     nombreListas = [];
+    productos= [];
 
     constructor(private http: Http) {
     }
     
     saveList( lista ) {
-        return this.http.post(this.url+'data.json', lista);
+        return this.http.put(this.url+'data.json', lista);
     }
     
     getLists() {
@@ -32,13 +31,22 @@ export class DataService {
     }
 
     getListNames() {
-        const nombres = [];
-        return this.http.get(this.url+'data.json').forEach((response: Response) => {
+        return this.http.get(this.url+'data.json').map((response: Response) => {
             if(response.ok){
                 const data = Object.values(response.json());
                 const nombres = this.obtenerNombres(data);
                 this.nombreListas = nombres;
             }
+        })
+    }
+
+    saveProduct(producto) {
+        return this.http.put(this.url+'producto.json', producto);
+    }
+
+    getProduct() {
+        return this.http.get(this.url+'producto.json').map( (prod: Response) => {
+            return this.productos = prod.json();
         })
     }
 
