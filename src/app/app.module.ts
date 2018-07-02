@@ -16,6 +16,8 @@ import { ProductoComponent } from './producto/producto.component';
 import { EditarListaComponent } from './editar-lista/editar-lista/editar-lista.component';
 import { DataBindingComponent } from './data-binding/data-binding/data-binding.component';
 import { FirstLetter } from './pipes/first-letter.pipe';
+import { HijoComponentComponent } from './comunicacion-componentes/hijo-component/hijo-component.component';
+import { PadreComponentComponent } from './comunicacion-componentes/padre-component/padre-component.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -23,7 +25,8 @@ const routes: Routes = [
   {path:'mis-listas', component: ListasGuardadasComponent},
   {path: 'editar-lista/:nombre', component: EditarListaComponent},
   {path:'productos', component: ProductoComponent},
-  {path:'data-binding', component: DataBindingComponent}
+  {path:'data-binding', component: DataBindingComponent},
+  {path:'padre-component', component: PadreComponentComponent}
 ]
 
 @NgModule({
@@ -38,7 +41,9 @@ const routes: Routes = [
     KeysPipe,
     FilterPipe,
     FirstLetter,
-    DataBindingComponent
+    DataBindingComponent,
+    PadreComponentComponent,
+    HijoComponentComponent
   ],
   imports: [
     BrowserModule, 

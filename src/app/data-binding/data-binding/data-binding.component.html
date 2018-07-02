@@ -11,7 +11,7 @@
         <button class="btn btn-success" (click)="onAddItem(texto)">Add an item</button>
       </div>
       <div class="col-md-6">
-        <div class="bucket" *ngFor="let item of items">{{item}}</div>
+        <div class="bucket" *ngFor="let item of items">{{item | titlecase}}</div>
       </div>
     </div>
   </form>
